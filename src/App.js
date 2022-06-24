@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { AuthContext, AuthProvider, TAuthConfig } from "react-oauth2-code-pkce"
+import Routes from "./Routes";
+import Home from './Home'
 
-function App() {
+const authService = new TAuthConfig({
+  clientId: 'test-client',
+  authorizationEndpoint: 'http://localhost:8080/oauth2/authorize',
+  redirectUri: 'http://localhost:3000/',
+  tokenEndpoint: 'http://localhost:8080/oauth2/token',
+  scope: 'openid',
+  logoutEndpoint: '',
+  logoutRedirect: '',
+});
+
+const App = props => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <AuthProvider authService={authService} >
+        <Home />
+      </AuthProvider>
+
   );
 }
 
