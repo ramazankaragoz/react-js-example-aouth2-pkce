@@ -12,7 +12,7 @@ const Home = props =>{
         authService.logout()
     }
 
-    if (authService.isPending()) {
+    /*if (authService.isPending()) {
         return <div>Loading...</div>
     }
 
@@ -23,11 +23,11 @@ const Home = props =>{
                 <button onClick={login}>Login</button>
             </div>
         )
-    }
+    }*/
 
     return (
         <div>
-            <p>Logged in! {authTokens.idToken}</p>
+            {/*<p>Logged in! {authTokens.idToken}</p>*/}
             <button onClick={logout}>Logout</button>
         </div>
     )

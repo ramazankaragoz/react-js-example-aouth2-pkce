@@ -25,7 +25,7 @@ const authService = new AuthService({
     //postLogin: () => location.replace(localStorage.getItem('preLoginPath')),
 });*/
 
-const App = props => {
+const App = () => {
 
     return (
 
