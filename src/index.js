@@ -4,6 +4,6 @@ import App from "./App";
 
 ReactDOM.render(
 
-    <div><App/></div>, document.getElementById("app")
+    <App/>, document.getElementById("app")
 
 );

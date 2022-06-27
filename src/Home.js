@@ -1,51 +1,35 @@
-import React, { useContext } from 'react'
-import { AuthContext} from "react-oauth2-code-pkce"
+import React from 'react';
+import { useAuth } from 'react-oauth2-pkce';
 
 const Home = props =>{
 
-    const { tokenData, token, logOut, idToken, error } = useContext(AuthContext);
+    const { authService, authTokens } = useAuth()
 
-    if (error){
-        return <>
-            <div style={{color: "red"}}>An error occurred during authentication: {error}</div>
-            <button onClick={()=>logOut()}>Logout</button>
-        </>
-
+    const login = async () => {
+        authService.authorize()
+    }
+    const logout = async () => {
+        authService.logout()
     }
 
-    return  (
-        <>
-            {token ?
-                <>
-                    <div>
-                        <h4>Access Token (JWT)</h4>
-                        <pre style={{
-                            width: '400px',
-                            margin: "10px",
-                            padding: "5px",
-                            border: "black 2px solid",
-                            wordBreak: 'break-all',
-                            whiteSpace: 'break-spaces',
-                        }}>
-                  {token}</pre>
-                    </div>
-                    <div>
-                        <h4>Login Information from Access Token (Base64 decoded JWT)</h4>
-                        <pre style={{
-                            width: '400px',
-                            margin: "10px",
-                            padding: "5px",
-                            border: "black 2px solid",
-                            wordBreak: 'break-all',
-                            whiteSpace: 'break-spaces',
-                        }}>
-                  {JSON.stringify(tokenData, null, 2)}</pre>
-                    </div>
-                    <button onClick={()=>logOut()}>Logout</button>
-                </> :
-                <div>You are not logged in. Refresh page to login.</div>
-            }
-        </>
+    if (authService.isPending()) {
+        return <div>Loading...</div>
+    }
+
+    if (!authService.isAuthenticated()) {
+        return (
+            <div>
+                <p>Not Logged in yet: {authTokens.idToken} </p>
+                <button onClick={login}>Login</button>
+            </div>
+        )
+    }
+
+    return (
+        <div>
+            <p>Logged in! {authTokens.idToken}</p>
+            <button onClick={logout}>Logout</button>
+        </div>
     )
 
 }
