@@ -8,6 +8,9 @@ module.exports = {
         path: commonPaths.outputPath,
         chunkFilename: '[name].js',
     },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
     module: {
         rules: [
             {
@@ -16,11 +19,16 @@ module.exports = {
                 use: ['source-map-loader'],
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.(js|jsx|ts)$/,
                 loader: 'babel-loader',
                 exclude: /(node_modules)/,
                 options: {
-                    presets: ['@babel/react'],
+                    presets: ['@babel/react','@babel/preset-typescript'],
                     plugins: [
                         ['import', {libraryName: 'antd', style: true}],
                         require.resolve('react-refresh/babel'),

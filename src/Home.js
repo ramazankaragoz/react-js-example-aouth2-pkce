@@ -12,22 +12,22 @@ const Home = props =>{
         authService.logout()
     }
 
-    /*if (authService.isPending()) {
+    if (authService.isPending()) {
         return <div>Loading...</div>
     }
 
     if (!authService.isAuthenticated()) {
         return (
             <div>
-                <p>Not Logged in yet: {authTokens.idToken} </p>
+                <p>Not Logged in yet: {authTokens} </p>
                 <button onClick={login}>Login</button>
             </div>
         )
-    }*/
+    }
 
     return (
         <div>
-            {/*<p>Logged in! {authTokens.idToken}</p>*/}
+            <p>Logged in! {authTokens}</p>
             <button onClick={logout}>Logout</button>
         </div>
     )

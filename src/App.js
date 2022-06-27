@@ -1,5 +1,6 @@
 import React from 'react'
 import { AuthProvider, AuthService } from 'react-oauth2-pkce'
+
 import RouteApp from "./RouteApp";
 
 
@@ -29,11 +30,11 @@ const App = () => {
 
     return (
 
-        <AuthProvider authConfig={authService}>
+        <AuthProvider authService={authService} >
             <RouteApp />
         </AuthProvider>
 
-    );
+    )
 }
 
 export default App;

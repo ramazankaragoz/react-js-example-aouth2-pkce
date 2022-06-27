@@ -14,8 +14,10 @@ module.exports = function babelConfig(api) {
       },
     ],
     '@babel/preset-react',
+    '@babel/preset-typescript'
   ];
   const plugins = [
+    //'@babel/plugin-transform-typescript',
     '@babel/transform-react-constant-elements',
     'transform-react-remove-prop-types',
     'transform-react-pure-class-to-function',
