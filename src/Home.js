@@ -3,13 +3,13 @@ import { useAuth } from 'react-oauth2-pkce';
 
 const Home = props =>{
 
-    const { authService, authTokens } = useAuth()
+    const { authService} = useAuth()
 
     const login = async () => {
-        authService.authorize()
+        authService.authorize();
     }
     const logout = async () => {
-        authService.logout()
+        authService.logout();
     }
 
     if (authService.isPending()) {
@@ -19,18 +19,27 @@ const Home = props =>{
     if (!authService.isAuthenticated()) {
         return (
             <div>
-                <p>Not Logged in yet: {authTokens} </p>
+                <p>Not Logged in yet.. Please click login for aurhorize..</p>
                 <button onClick={login}>Login</button>
             </div>
         )
-    }
+    }else {
 
-    return (
-        <div>
-            <p>Logged in! {authTokens}</p>
-            <button onClick={logout}>Logout</button>
-        </div>
-    )
+        let user=authService.getUser();
+        return (
+            <div>
+                <p>Logged in {user.name} !</p>
+                <br/>
+                <p>Email: {user.email}</p>
+                <p>Expire: {user.exp}</p>
+                <br/>
+                <p>Access Token:</p>
+                <p>{authService.getAuthTokens().access_token}</p>
+                <br/>
+                <button onClick={logout}>Logout</button>
+            </div>
+        )
+    }
 
 }
 

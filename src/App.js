@@ -8,8 +8,10 @@ import RouteApp from "./RouteApp";
 const authService = new AuthService({
     clientId: 'test-client',
     location: window.location,
-    provider: 'http://localhost:8080/oauth2/token',
-    redirectUri: window.location.origin,
+    provider: 'http://127.0.0.1:8080/oauth2',
+    tokenEndpoint:'http://127.0.0.1:8080/oauth2/token',
+    authorizeEndpoint:'http://127.0.0.1:8080/oauth2/authorize',
+    redirectUri: 'http://127.0.0.1:3000',
     scopes: ['openid']
 });
 
