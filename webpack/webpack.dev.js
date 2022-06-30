@@ -59,6 +59,20 @@ module.exports = {
         contentBase: commonPaths.outputPath,
         compress: true,
         hot: true,
+        host:'localhost',
+        open: 'chrome',
+        proxy: {
+            '/oauth2': {
+                target: 'http://localhost:8081',
+                secure: false,
+            },
+        },
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Referer": "*",
+            "Access-Control-Allow-Headers": "*"
+        }
     },
     plugins: [new ReactRefreshWebpackPlugin()],
 };

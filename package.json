@@ -1,6 +1,19 @@
 {
   "name": "minimal-webpack-react",
   "version": "2.0.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Chrome disable-web-security",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": [
+        "--disable-web-security",
+        "--user-data-dir=~/ChromeUserData/"
+      ]
+    }
+  ],
   "description": "Boilerplate for react  and webpack",
   "main": "index.js",
   "scripts": {
