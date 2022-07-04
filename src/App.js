@@ -6,11 +6,11 @@ import RouteApp from "./RouteApp";
 
 
 const authService = new AuthService({
-    clientId: 'test-client',
+    clientId: 'tiga-health-frontend',
     location: window.location,
-    provider: 'http://localhost:8081/oauth2',
-    tokenEndpoint:'http://localhost:8081/oauth2/token',
-    authorizeEndpoint:'http://localhost:8081/oauth2/authorize',
+    provider: 'http://127.0.0.1:8081/oauth2',
+    tokenEndpoint:'http://127.0.0.1:8081/oauth2/token',
+    authorizeEndpoint:'http://127.0.0.1:8081/oauth2/authorize',
     redirectUri: 'http://127.0.0.1:3000',
     scopes: ['openid']
 });
